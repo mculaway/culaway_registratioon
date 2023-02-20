@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form Activity</title>
+
+        <script>
+            function validateForm(){
+                var pass = document.forms["myForms"]["password"].value;
+                var flag = true;
+                if(pass.length < 8){
+                    var element = document.getElementById("password");
+                    element.innerHTML = "Password must be at least 8 characters."
+                    flag = false
+                }
+                
+                var birthYear = Number(document.forms["myForms"]["bday"].value.substring(0,4))
+                var age = (new Date().getFullYear()) - birthYear
+                if (age <= 20){
+                    var element = document.getElementById("birhdate");
+                    element.innerHTML = "Minors are not allowed!"
+                    flag = false
+                }
+                if (flag == true){
+                    var element = document.getElementById("prompt");
+                    element.innerHTML = "Hooray! Your account has been successfully created."
+                }
+                return false
+            }
+        </script>
+
+    </head>
+    <body>
+        <div style="text-align: center;">
+         	<form name="myForms" onsubmit="return validateForm()" method="POST">
+            <h1>Registration Form</h1>
+            First Name:
+            <input type="text" name="firstname"/><br/>
+            Last Name:
+            <input type="text" name="lastname"/><br/>
+            Nick Name:    
+            <input type="text" name="nickname"/><br/>
+            Email:         
+            <input type="email" name="email"/><br/>
+            Password:   
+            <input type="password" name="password"/><br/>
+            <p id="password" style="color:red;"></p>
+            Date of Birth: 
+            <input type="date" name="bday"/><br/>
+            <p id="birthdate" style="color: red"></p>
+            Gender:       
+            <input type="radio" name="male" value="male"/> Male
+            <input type="radio" name="female" value="female"/> Female
+            <input type="radio" name="other" value="other"/> Other <br/>
+            Mobile:       
+            <input type="number" name="mobile"/><br/>
+            Address:       <br/>
+            <textarea type="address" value="address" cols="30" rows="10"></textarea><br/>
+            <input type="submit" name="submit" value="Submit">
+            <input type="reset" name="reset" value="Reset"><br/>
+            </form>
+            <p id="prompt" style="color:green"></p>
+        </div>
+
+    </body>
+</html>
